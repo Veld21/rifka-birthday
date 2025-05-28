@@ -1,140 +1,167 @@
 <!DOCTYPE html>
- <html lang="en">
- <head>
+<html lang="en">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Selamat Ulang Tahun, Rifka!</title>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-  body {
-  font-family: 'Quicksand', sans-serif;
-  margin: 0;
-  padding: 0;
-  background: #fffafc;
-  color: #333;
-  overflow-x: hidden;
-  }
-  header {
-  text-align: center;
-  padding: 2rem;
-  background: linear-gradient(135deg, #ffc0cb, #ffe4e1);
-  }
-  h1 {
-  margin-bottom: 0.5rem;
-  font-size: 2.5rem;
-  }
-  .message {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 1rem;
-  background: #fff0f5;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(255, 192, 203, 0.3);
-  }
-  .image-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
-  gap: 1rem;
-  padding: 2rem;
-  }
+    body {
+      font-family: 'Quicksand', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #fffafc, #ffeef5);
+      color: #333;
+      overflow-x: hidden;
+    }
 
-  .image-grid img {
-  border-radius: 10px;
-  width: 100%; /* Make images fill their container */
-  height: auto;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  video {
-  display: block;
-  margin: 2rem auto;
-  max-width: 90%;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  }
-  audio {
-  display: none;
-  }
-  canvas#confetti-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  width: 100vw;
-  height: 100vh;
-  z-index: 9999;
-  }
+    header {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: linear-gradient(135deg, #ffc0cb, #ffe4e1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      color: #d6336c;
+    }
+
+    .message {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      background: #fff0f5;
+      border-radius: 15px;
+      box-shadow: 0 0 12px rgba(255, 192, 203, 0.3);
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+
+    .slider-row {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 2rem 1rem 0;
+    }
+
+    .slider-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    .slider-row img,
+    .slider-column img {
+      width: 280px;
+      max-width: 90%;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .slider-row img:hover,
+    .slider-column img:hover {
+      transform: scale(1.03);
+    }
+
+    video {
+      display: block;
+      margin: 2rem auto;
+      max-width: 90%;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    audio {
+      display: none;
+    }
+
+    canvas#confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9999;
+    }
   </style>
- </head>
- <body>
+</head>
+<body>
   <canvas id="confetti-canvas"></canvas>
+
   <header>
-  <h1>Selamat Ulang Tahun, Rifka! 🎉</h1>
+    <h1>Selamat Ulang Tahun, Rifka! 🎉</h1>
   </header>
 
   <div class="message">
-  <p>Happy Birthday, Rifka! 🥳🎂🌸
-Today is special because someone truly special was born.
-You’re not just a beautiful soul 💖, but also someone who makes the world feel a little warmer , a little softer , and a lot more meaningful ✨.
-I hope all your dreams come true, your path is always smooth , and your smile never fades because that smile is something I’d love to see for a long, long time 🫶.
-Im really grateful to know you . Every moment we share, no matter how small, becomes a memory I quietly cherish 💗.
-Hopefully, I can be part of more of your days in the future not just as someone who wishes you well from afar , but maybe… someone who gets to stand a little closer .
-Wishing you a beautiful year ahead one where love finds you in unexpected ways , and where happiness feels like home 💞.
-Happy birthday, Rifka.
-Loveyou 🥰
-
-From : Eldwin Wijaya</p>
+    <p>Happy Birthday, Rifka! 🥳🎂🌸<br>
+    Today is special because someone truly special was born.<br>
+    You’re not just a beautiful soul 💖, but also someone who makes the world feel a little warmer, a little softer, and a lot more meaningful ✨.<br>
+    I hope all your dreams come true, your path is always smooth, and your smile never fades because that smile is something I’d love to see for a long, long time 🫶.<br>
+    I'm really grateful to know you. Every moment we share, no matter how small, becomes a memory I quietly cherish 💗.<br>
+    Hopefully, I can be part of more of your days in the future — not just as someone who wishes you well from afar, but maybe… someone who gets to stand a little closer 💌.<br>
+    Wishing you a beautiful year ahead — one where love finds you in unexpected ways, and where happiness feels like home 💞.<br>
+    Happy birthday, Rifka.<br>
+    Love you 🥰<br><br>
+    From: Eldwin Wijaya
+    </p>
   </div>
 
-  <div class="image-grid">
-  <img src="Rifka.jpeg" alt="Foto 1" />
-  <img src="img2.jpeg" alt="Foto 2" />
-  <img src="img3.jpeg" alt="Foto 3" />
-  <img src="1.jpeg" alt="Foto 4" />
-  <img src="2.jpeg" alt="Foto 5" />
-  <img src="3.jpeg" alt="Foto 6" />
-  <img src="4.jpeg" alt="Foto 7" />
-  <img src="5.jpeg" alt="Foto 8" />
-  <img src="6.jpeg" alt="Foto 9" />
-  <img src="7.jpeg" alt="Foto 10" />
-  <img src="8.jpeg" alt="Foto 11" />
-  <img src="9.jpeg" alt="Foto 12" />
-  <img src="10.jpeg" alt="Foto 13" />
-  <img src="11.jpeg" alt="Foto 14" />
-  <img src="12.jpeg" alt="Foto 15" />
-  <img src="13.jpeg" alt="Foto 16" />
-  <img src="14.jpeg" alt="Foto 17" />
-  <img src="15.jpeg" alt="Foto 18" />
+  <!-- 3 images side-by-side -->
+  <div class="slider-row">
+    <img src="Rifka.jpeg" alt="Foto 1" />
+    <img src="img2.jpeg" alt="Foto 2" />
+    <img src="img3.jpeg" alt="Foto 3" />
+  </div>
 
-
+  <!-- Remaining images vertically -->
+  <div class="slider-column">
+    <img src="15.jpeg" alt="Foto 4" />
+    <img src="2.jpeg" alt="Foto 5" />
+    <img src="3.jpeg" alt="Foto 6" />
+    <img src="4.jpeg" alt="Foto 7" />
+    <img src="5.jpeg" alt="Foto 8" />
+    <img src="6.jpeg" alt="Foto 9" />
+    <img src="7.jpeg" alt="Foto 10" />
+    <img src="8.jpeg" alt="Foto 11" />
+    <img src="9.jpeg" alt="Foto 12" />
+    <img src="10.jpeg" alt="Foto 13" />
+    <img src="11.jpeg" alt="Foto 14" />
+    <img src="12.jpeg" alt="Foto 15" />
+    <img src="13.jpeg" alt="Foto 16" />
+    <img src="14.jpeg" alt="Foto 17" />
+    <img src="1.jpeg" alt="Foto 18" />
   </div>
 
   <audio autoplay loop>
-  <source src="music.mp3" type="audio/mpeg" />
+    <source src="music.mp3" type="audio/mpeg" />
   </audio>
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script>
-  const duration = 10 * 1000;
-  const animationEnd = Date.now() + duration;
-  const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+    const duration = 10 * 1000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
-  function randomInRange(min, max) {
-  return Math.random() * (max - min) + min;
-  }
+    function randomInRange(min, max) {
+      return Math.random() * (max - min) + min;
+    }
 
-  const interval = setInterval(function () {
-  const timeLeft = animationEnd - Date.now();
-
-  if (timeLeft <= 0) {
-  return clearInterval(interval);
-  }
-
-  const particleCount = 50 * (timeLeft / duration);
-  confetti(Object.assign({}, defaults, {
-  particleCount,
-  origin: { x: randomInRange(0.1, 0.9), y: Math.random() - 0.2 }
-  }));
-  }, 250);
+    const interval = setInterval(function () {
+      const timeLeft = animationEnd - Date.now();
+      if (timeLeft <= 0) return clearInterval(interval);
+      const particleCount = 50 * (timeLeft / duration);
+      confetti(Object.assign({}, defaults, {
+        particleCount,
+        origin: { x: randomInRange(0.1, 0.9), y: Math.random() - 0.2 }
+      }));
+    }, 250);
   </script>
- </body>
- </html>
+</body>
+</html>
