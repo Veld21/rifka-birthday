@@ -90,6 +90,48 @@
       height: 100vh;
       z-index: 9999;
     }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      transform: rotate(45deg);
+      animation: floatUp 3s linear forwards;
+      z-index: 999;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: -10px;
+    }
+
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0) rotate(45deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-200px) rotate(45deg);
+      }
+    }
   </style>
 </head>
 <body>
@@ -143,6 +185,7 @@
     <source src="music.mp3" type="audio/mpeg" />
   </audio>
 
+  <!-- Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script>
     const duration = 10 * 1000;
@@ -162,6 +205,28 @@
         origin: { x: randomInRange(0.1, 0.9), y: Math.random() - 0.2 }
       }));
     }, 250);
+  </script>
+
+  <!-- Floating Hearts -->
+  <script>
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.top = "100vh";
+      heart.style.backgroundColor = ["#ff69b4", "#ff1493", "#ffc0cb", "#db7093"][Math.floor(Math.random() * 4)];
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 3000);
+    }
+    setInterval(createHeart, 500);
+  </script>
+
+  <!-- ScrollReveal -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script>
+    ScrollReveal().reveal('.message', { delay: 300, distance: '40px', duration: 1000 });
+    ScrollReveal().reveal('.slider-row img', { interval: 200, origin: 'bottom', distance: '40px' });
+    ScrollReveal().reveal('.slider-column img', { interval: 150, origin: 'left', distance: '40px' });
   </script>
 </body>
 </html>
