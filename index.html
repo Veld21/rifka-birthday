@@ -135,6 +135,30 @@
   </style>
 </head>
 <body>
+  <script>
+  if (localStorage.getItem("opened_once")) {
+    document.body.innerHTML = `
+      <div style="
+        height:100vh;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        text-align:center;
+        font-family:'Quicksand', sans-serif;
+        background:#fff0f5;
+      ">
+        <div>
+          <h2>❌ Halaman ini sudah dibuka</h2>
+          <p>Pesan ini hanya bisa dibaca satu kali.</p>
+        </div>
+      </div>
+    `;
+    throw new Error("Access blocked");
+  } else {
+    localStorage.setItem("opened_once", "true");
+  }
+</script>
+
   <canvas id="confetti-canvas"></canvas>
 
   <header>
@@ -155,7 +179,7 @@
   </div>
 
   <!-- Remaining images vertically -->
- <!-- <div class="slider-column">
+ <div class="slider-column">
     <img src="15.jpeg" alt="Foto 4" />
     <img src="2.jpeg" alt="Foto 5" />
     <img src="3.jpeg" alt="Foto 6" />
@@ -222,4 +246,5 @@
   </script>
 </body>
 </html>
+
 
