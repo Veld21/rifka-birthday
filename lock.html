@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Access</title>
+  <script>
+    if (localStorage.getItem("opened_once")) {
+      document.write(`
+        <h2 style="text-align:center;margin-top:20%;">
+          ❌ Halaman ini sudah dibuka
+        </h2>
+        <p style="text-align:center;">
+          Link ini hanya bisa diakses satu kali.
+        </p>
+      `);
+    } else {
+      localStorage.setItem("opened_once", "true");
+      window.location.href = "index.html";
+    }
+  </script>
+</head>
+<body></body>
+</html>
