@@ -1,132 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Selamat Ulang Tahun, Rifka!</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Selamat Ulang Tahun, Rifka!</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet" />
 
-  <style>
-    body {
-      font-family: 'Quicksand', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(to bottom, #fffafc, #ffeef5);
-      color: #333;
-      overflow-x: hidden;
-    }
+<style>
+body {
+  font-family: 'Quicksand', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  overflow-x: hidden;
+}
 
-    header {
-      text-align: center;
-      padding: 3rem 2rem;
-      background: linear-gradient(135deg, #ffc0cb, #ffe4e1);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
+body.locked {
+  overflow: hidden;
+  height: 100vh;
+  touch-action: none;
+}
 
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-      color: #d6336c;
-    }
+/* 🌸 WALLPAPER */
+#wallpaper {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+}
 
-    .message {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 1.8rem;
-      background: #fff0f5;
-      border-radius: 15px;
-      box-shadow: 0 0 12px rgba(255, 192, 203, 0.3);
-      line-height: 1.8;
-      font-size: 1.05rem;
-    }
+.wallpaper-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background-color: black;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  filter: brightness(1.15) contrast(1.05);
+}
 
-    .slider-row {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      padding: 2rem 1rem 0;
-    }
+.wallpaper-img.active {
+  opacity: 1;
+}
 
-    .slider-row img {
-      width: 280px;
-      max-width: 90%;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
+#wallpaper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
 
-    /* LOGIN */
-    #login-overlay {
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(to bottom, #fffafc, #ffeef5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-    }
+header {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: rgba(255, 192, 203, 0.75);
+  backdrop-filter: blur(4px);
+}
 
-    .login-box {
-      background: #fff0f5;
-      padding: 2rem;
-      border-radius: 18px;
-      width: 320px;
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(214, 51, 108, 0.25);
-    }
+h1 {
+  font-size: 3rem;
+  color: #d6336c;
+}
 
-    .login-box h2 {
-      color: #d6336c;
-    }
+.message {
+  color:white;
+  max-width: 850px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: transparent;
+  border-radius: 18px;
+  box-shadow: none;
+  line-height: 1.8;
+  font-size: 1.05rem;
+  backdrop-filter: none;
+}
+.message p {
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+}
 
-    .login-box input {
-      width: 100%;
-      padding: 0.7rem;
-      margin: 0.5rem 0;
-      border-radius: 10px;
-      border: 1px solid #ffc0cb;
-      font-family: 'Quicksand', sans-serif;
-    }
+/* 🔐 LOGIN */
+#login-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(to bottom, #fffafc, #ffeef5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
 
-    .login-box button {
-      width: 100%;
-      padding: 0.7rem;
-      margin-top: 0.7rem;
-      border: none;
-      border-radius: 12px;
-      background: #ff69b4;
-      color: white;
-      font-size: 1rem;
-      cursor: pointer;
-    }
+.login-box {
+  background: #fff0f5;
+  padding: 2rem;
+  border-radius: 18px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(214, 51, 108, 0.25);
+}
 
-    #error {
-      color: #d6336c;
-      font-size: 0.9rem;
-      margin-top: 0.5rem;
-    }
-  </style>
+.login-box input {
+  width: 100%;
+  padding: 0.7rem;
+  margin: 0.5rem 0;
+  border-radius: 10px;
+  border: 1px solid #ffc0cb;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 0.7rem;
+  margin-top: 0.7rem;
+  border: none;
+  border-radius: 12px;
+  background: #ff69b4;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#error {
+  color: #d6336c;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+</style>
 </head>
 
-<body>
+<body class="locked">
 
-<!-- LOGIN OVERLAY -->
+<div id="wallpaper"></div>
+
 <div id="login-overlay">
   <div class="login-box">
     <h2>💖 Welcome</h2>
     <p>Please log in first</p>
-
-    <p style="
-      font-size: 0.85rem;
-      line-height: 1.4;
-      color: #a84c6f;
-      margin-bottom: 1rem;
-    ">
+    <p style="font-size:0.85rem;color:#a84c6f;">
       This page can only be accessed once.<br>
-      Please do not refresh or reopen the page if you still want to see everything.
+      Please do not refresh or reopen the page.
     </p>
-
     <input type="text" id="username" placeholder="Username">
     <input type="password" id="password" placeholder="Password">
     <button onclick="login()">Login</button>
@@ -134,47 +149,53 @@
   </div>
 </div>
 
-
 <header>
-  <h1>Selamat Ulang Tahun, Rifka! 🎉</h1>
+  <h1>Happy Birthday! 🎉</h1>
 </header>
 
 <div class="message">
-  <p>
-    <strong>Happy birthday, Rifka.</strong><br><br>
+<p>
+<strong>Selamat ulang tahun, Rifka Wang 🎂✨🤍🌷</strong><br><br>
 
-    Thank you for taking the time to open this and read it until the end.<br><br>
+Semoga di umur kamu yang sekarang ini, kamu makin dikelilingi hal-hal yang bikin hati kamu tenang dan ngerasa disayang 🤍✨
+Semoga langkah kamu ke depan terasa lebih ringan, keputusan kamu selalu bawa kebaikan, dan hari-hari kamu dipenuhi hal-hal kecil yang bikin kamu senyum sendiri 🌸💫
+Aku cuma pengen tahun ini jadi tahun yang lebih spesial dari sebelumnya buat kamu, nggak kebanyakan ragu, dan lebih banyak bahagianya 🤍🌷<br><br>
 
-    I waited for you, just as I once said I would.  
-    Not with pressure, and not with expectations placed on you, only with hope that I chose to carry on my own.  
-    I stayed for as long as I felt it was right for me.<br><br>
 
-    Today, with a clearer and more honest heart, I choose to step back.  
-    Not out of anger, and not out of resentment, but because I’ve learned that I need to respect myself too.  
-    From now on, I won’t disturb you anymore, the way I did before.<br><br>
+I waited for you, just as I once said I would 🌙 
+Not with pressure, and not with expectations placed on you, only with hope that I chose to carry on my own 🤍  
+I stayed for as long as I felt it was right for me ✨<br><br>
 
-    This is my final message.  
-    It is not meant to leave a wound, but to let things end in a peaceful and respectful way.  
-    I want what remains to be something gentle to remember, not something heavy to carry.<br><br>
+Today, with a clearer and more honest heart, I choose to step back 🤍  
+Not out of anger, and not out of resentment, but because I’ve learned that I need to respect myself too 🌷  
+From now on, I won’t disturb you anymore, the way I did before 💫<br><br>
 
-    As for us, we can still be friends.  
-    That choice is entirely yours, and whatever you decide, I will respect it without asking for explanations.  
-    I never want to force you into a space you did not choose.<br><br>
+This is my final message 🤍  
+It is not meant to leave a wound, but to let things end in a peaceful and respectful way 🌸  
+I want what remains to be something gentle to remember, not something heavy to carry ✨<br><br>
 
-    I hope life treats you kindly from here on.  
-    May you be surrounded by things that make you feel safe, fulfilled, and at ease.  
-    And I truly hope that one day, you feel genuinely happy with the path you choose.<br><br>
+As for us, we can still be friends 🤍  
+That choice is entirely yours, and whatever you decide, I will respect it without asking for explanations 🌷  
+I never want to force you into a space you did not choose 💫<br><br>
 
-    Thank you for the time, the stories, and the feelings we once shared.<br>
-    Take good care of yourself, Rifka.<br>
-    I sincerely wish you all the best.
-  </p>
+I hope life treats you kindly from here on 🤍  
+May you be surrounded by things that make you feel safe, fulfilled, and at ease 🌸✨  
+And I truly hope that one day, you feel genuinely happy with the path you choose 🌷🤍<br><br>
+
+Thank you for the time, the stories, and the feelings we once shared 🤍  
+Take good care of yourself, Rifka 🌙✨  
+I sincerely wish you all the best 🌷🤍<br><br>
+
+
+<div style="display: flex; align-items: center; gap: 10px; justify-content: center;">
+  <span>"Seiring waktu, ingatan setiap orang pasti akan memudar, tapi jika seseorang kamu simpan di dalam HATI, itu tidak akan hilang darisananya 🤍😊😭😭😭"</span>
+  <img src="xixi.jpg" alt="photo" style="width:55px; height:55px; border-radius:50%; object-fit:cover;">
 </div>
+<br><br>
 
-<div class="slider-row">
-  <img src="Rifka.jpeg" alt="Foto 1">
-  <img src="img2.jpeg" alt="Foto 2">
-  <img src="img3.jpeg" alt="Foto 3">
+
+</p>
+
 </div>
 
 <script>
@@ -183,21 +204,12 @@ const PASSWORD = "290503";
 
 if (localStorage.getItem("used_once")) {
   document.body.innerHTML = `
-    <div style="
-      height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      background:#fff0f5;
-      font-family:'Quicksand', sans-serif;
-    ">
-      <div>
-        <h2>❌ Access already used</h2>
-        <p>This page can only be opened once.</p>
-      </div>
+  <div style="height:100vh;display:flex;align-items:center;justify-content:center;background:#fff0f5;font-family:Quicksand;">
+    <div style="text-align:center;">
+      <h2>❌ Access already used</h2>
+      <p>This page can only be opened once.</p>
     </div>
-  `;
+  </div>`;
 }
 
 function login() {
@@ -207,9 +219,38 @@ function login() {
   if (u === USERNAME && p === PASSWORD) {
     localStorage.setItem("used_once", "true");
     document.getElementById("login-overlay").style.display = "none";
+    document.body.classList.remove("locked");
+    startSlideshow();
   } else {
     document.getElementById("error").innerText = "Wrong username or password";
   }
+}
+
+function startSlideshow() {
+  const container = document.getElementById("wallpaper");
+
+  for (let i = 1; i <= 30; i++) {
+    const img = document.createElement("img");
+
+    if (i <= 18) {
+      img.src = i + ".jpeg";
+    } else {
+      img.src = i + ".jpg";
+    }
+
+    img.classList.add("wallpaper-img");
+    if (i === 1) img.classList.add("active");
+    container.appendChild(img);
+  }
+
+  let current = 0;
+  const slides = document.querySelectorAll(".wallpaper-img");
+
+  setInterval(() => {
+    slides[current].classList.remove("active");
+    current = (current + 1) % slides.length;
+    slides[current].classList.add("active");
+  }, 2000);
 }
 </script>
 
