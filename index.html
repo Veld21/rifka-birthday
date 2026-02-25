@@ -22,6 +22,19 @@ body.locked {
   touch-action: none;
 }
 
+/* WATERMARK */
+body::before {
+  content: "Private — Rifka Only";
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-25deg);
+  font-size: 3rem;
+  color: rgba(255,255,255,0.06);
+  pointer-events: none;
+  z-index: 9999;
+}
+
 /* 🌸 WALLPAPER */
 #wallpaper {
   position: fixed;
@@ -73,11 +86,10 @@ h1 {
   padding: 2rem;
   background: transparent;
   border-radius: 18px;
-  box-shadow: none;
   line-height: 1.8;
   font-size: 1.05rem;
-  backdrop-filter: none;
 }
+
 .message p {
   text-shadow: 0 2px 8px rgba(0,0,0,0.7);
 }
@@ -136,7 +148,7 @@ h1 {
 
 <div id="login-overlay">
   <div class="login-box">
-    <h2>💖 Welcome</h2>
+    <h2>Haiii ♥</h2>
     <p>Please log in first</p>
     <p style="font-size:0.85rem;color:#a84c6f;">
       This page can only be accessed once.<br>
@@ -145,13 +157,14 @@ h1 {
     <input type="text" id="username" placeholder="Username">
     <input type="password" id="password" placeholder="Password">
     <button onclick="login()">Login</button>
-    <p>INGET SEKALI DOANG</p>
+    <p>INGAT JANGAN BUKA APK LAIN, COBA SS, ATAU RECORD DARI HP YANG SAMA </p>
+    <p></p>
     <p id="error"></p>
   </div>
 </div>
 
 <header>
-  <h1>Happy Birthday! RW 🎉</h1>
+  <h1>Happy Birthday! 🎉</h1>
 </header>
 
 <div class="message">
@@ -161,7 +174,6 @@ h1 {
 Semoga di umur kamu yang sekarang ini, kamu makin dikelilingi hal-hal yang bikin hati kamu tenang dan ngerasa disayang 🤍✨
 Semoga langkah kamu ke depan terasa lebih ringan, keputusan kamu selalu bawa kebaikan, dan hari-hari kamu dipenuhi hal-hal kecil yang bikin kamu senyum sendiri 🌸💫
 Aku cuma pengen tahun ini jadi tahun yang lebih spesial dari sebelumnya buat kamu, nggak kebanyakan ragu, dan lebih banyak bahagianya 🤍🌷<br><br>
-
 
 I waited for you, just as I once said I would 🌙 
 Not with pressure, and not with expectations placed on you, only with hope that I chose to carry on my own 🤍  
@@ -187,16 +199,36 @@ Thank you for the time, the stories, and the feelings we once shared 🤍
 Take good care of yourself, Rifka 🌙✨  
 I sincerely wish you all the best 🌷🤍<br><br>
 
-
 <div style="display: flex; align-items: center; gap: 10px; justify-content: center;">
-  <span>"Seiring waktu, ingatan setiap orang pasti akan memudar, tapi jika seseorang kamu simpan di dalam HATI, itu tidak akan hilang darisananya 🤍😊😭😭😭"</span>
-  <img src="xixi.jpg" alt="photo" style="width:55px; height:55px; border-radius:50%; object-fit:cover;">
+  <span>"Seiring waktu, ingatan setiap orang pasti akan memudar, tapi jika seseorang kamu simpan di dalam HATI, itu tidak akan hilang darisananya 🤍😊😭"</span>
+  <img 
+  src="xixi.jpg" 
+  alt="photo"
+  onclick="showHeartbreak()"
+  style="width:55px; height:55px; border-radius:50%; object-fit:cover; cursor:pointer; transition:0.3s;"
+  onmouseover="this.style.transform='scale(1.1)'"
+  onmouseout="this.style.transform='scale(1)'">
 </div>
 <br><br>
-
-
+<p>Hadiahnya di klik kalo uda baca semua sama udah mau close, kalau blm jangan di klik dlu</p>
+<div style="text-align:center;margin-top:40px;">
+  <a href="https://linkkamu.com" target="_blank" 
+     style="
+     display:inline-block;
+     padding:12px 25px;
+     background:#ff69b4;
+     color:white;
+     text-decoration:none;
+     border-radius:30px;
+     font-weight:bold;
+     letter-spacing:2px;
+     transition:0.3s;">
+     
+     MY GIFT FOR YOU 🎁
+     
+  </a>
+</div>
 </p>
-
 </div>
 
 <script>
@@ -205,10 +237,12 @@ const PASSWORD = "290503";
 
 if (localStorage.getItem("used_once")) {
   document.body.innerHTML = `
-  <div style="height:100vh;display:flex;align-items:center;justify-content:center;background:#fff0f5;font-family:Quicksand;">
+  <div style="height:100vh;display:flex;align-items:center;justify-content:center;background:black;color:white;font-family:Quicksand;">
     <div style="text-align:center;">
-      <h2>❌ Access already used</h2>
-      <p>This page can only be opened once.</p>
+      <h2>🌙 This page has ended</h2>
+      <p>Some moments are only meant to exist once.</p>
+      <br><br><br><br>
+      <h2>Bisa buka lagi tapi pake device lain ya, besok webnya udah hilang</h2>
     </div>
   </div>`;
 }
@@ -218,13 +252,43 @@ function login() {
   const p = document.getElementById("password").value;
 
   if (u === USERNAME && p === PASSWORD) {
-    localStorage.setItem("used_once", "true");
     document.getElementById("login-overlay").style.display = "none";
     document.body.classList.remove("locked");
     startSlideshow();
+    startSelfDestruct();
+    activateProtection();
   } else {
     document.getElementById("error").innerText = "Wrong username or password";
   }
+}
+
+function startSelfDestruct() {
+  setTimeout(() => {
+    localStorage.setItem("used_once", "true");
+    document.body.style.transition = "opacity 2s ease";
+    document.body.style.opacity = "0";
+    setTimeout(() => {
+      location.reload();
+    }, 2000);
+  }, 300000);
+}
+
+function activateProtection() {
+
+  document.addEventListener("contextmenu", e => e.preventDefault());
+
+  document.onkeydown = function(e) {
+    if (e.key === "F12") return false;
+    if (e.ctrlKey && e.shiftKey && e.key === "I") return false;
+    if (e.ctrlKey && e.key === "u") return false;
+  };
+
+  document.addEventListener("visibilitychange", function() {
+    if (document.hidden) {
+      localStorage.setItem("used_once", "true");
+      location.reload();
+    }
+  });
 }
 
 function startSlideshow() {
@@ -232,13 +296,11 @@ function startSlideshow() {
 
   for (let i = 1; i <= 30; i++) {
     const img = document.createElement("img");
-
     if (i <= 18) {
       img.src = i + ".jpeg";
     } else {
       img.src = i + ".jpg";
     }
-
     img.classList.add("wallpaper-img");
     if (i === 1) img.classList.add("active");
     container.appendChild(img);
@@ -253,10 +315,33 @@ function startSlideshow() {
     slides[current].classList.add("active");
   }, 2000);
 }
+function showHeartbreak() {
+  const notif = document.createElement("div");
+  notif.innerHTML = "💔 My heart broke for the second time.";
+
+  notif.style.position = "fixed";
+  notif.style.top = "50%";
+  notif.style.left = "50%";
+  notif.style.transform = "translate(-50%, -50%)";
+  notif.style.padding = "20px 35px";
+  notif.style.background = "rgba(0,0,0,0.85)";
+  notif.style.color = "white";
+  notif.style.borderRadius = "15px";
+  notif.style.fontSize = "1.1rem";
+  notif.style.zIndex = "99999";
+  notif.style.opacity = "0";
+  notif.style.transition = "opacity 0.4s ease";
+
+  document.body.appendChild(notif);
+
+  setTimeout(() => notif.style.opacity = "1", 100);
+
+  setTimeout(() => {
+    notif.style.opacity = "0";
+    setTimeout(() => notif.remove(), 400);
+  }, 3000);
+}
 </script>
 
 </body>
 </html>
-
-
-
