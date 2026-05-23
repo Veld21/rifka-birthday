@@ -1,10 +1,10 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc, doc, getDoc, setDoc, updateDoc, serverTimestamp, query, orderBy, limit, getDocs } from "firebase/firestore";
+import { getFirestore, collection, addDoc, doc, updateDoc, serverTimestamp, query, orderBy, getDocs } from "firebase/firestore";
 import { CONFIG } from "./config";
+
 let db = null;
 let app = null;
 
-// Initialize Firebase
 try {
   app = initializeApp(CONFIG.firebaseConfig);
   db = getFirestore(app);
@@ -12,7 +12,6 @@ try {
   console.warn("[Analytics] Firebase init failed:", err.message);
 }
 
-// ─── Visitor ID ──────────────────────────────────────
 function getOrCreateVisitorId() {
   try {
     let id = localStorage.getItem("rw_visitor_id");
@@ -27,17 +26,12 @@ function getOrCreateVisitorId() {
 }
 
 function isReturningVisitor() {
-  try {
-    return !!localStorage.getItem("rw_visited_before");
-  } catch {
-    return false;
-  }
+  try { return !!localStorage.getItem("rw_visited_before"); }
+  catch { return false; }
 }
 
 function markVisited() {
-  try {
-    localStorage.setItem("rw_visited_before", "true");
-  } catch {}
+  try { localStorage.setItem("rw_visited_before", "true"); } catch {}
 }
 
 function getDeviceInfo() {
@@ -50,7 +44,6 @@ function getDeviceInfo() {
   return { device, browser, userAgent: ua };
 }
 
-// ─── Session tracking ────────────────────────────────
 let sessionDocId = null;
 const sessionStart = Date.now();
 
@@ -60,17 +53,10 @@ export async function trackVisit() {
     const visitorId = getOrCreateVisitorId();
     const returning = isReturningVisitor();
     const { device, browser, userAgent } = getDeviceInfo();
-
     const docRef = await addDoc(collection(db, "visits"), {
-      visitorId,
-      returning,
-      device,
-      browser,
-      userAgent,
+      visitorId, returning, device, browser, userAgent,
       sessionStart: serverTimestamp(),
-      sessionEnd: null,
-      totalDuration: null,
-      lastPageVisited: null,
+      sessionEnd: null, totalDuration: null, lastPageVisited: null,
     });
     sessionDocId = docRef.id;
     markVisited();
@@ -84,43 +70,34 @@ export async function trackSessionEnd(lastPage) {
   try {
     const duration = Math.round((Date.now() - sessionStart) / 1000);
     await updateDoc(doc(db, "visits", sessionDocId), {
-      sessionEnd: serverTimestamp(),
-      totalDuration: duration,
-      lastPageVisited: lastPage,
+      sessionEnd: serverTimestamp(), totalDuration: duration, lastPageVisited: lastPage,
     });
   } catch (err) {
     console.warn("[Analytics] trackSessionEnd failed:", err.message);
   }
 }
 
-// ─── Access question tracking ────────────────────────
-export async function trackAccessAttempt({ answer, isCorrect, attempts }) {
+export async function trackAccessAttempt({ answer, isCorrect, attempts, context }) {
   if (!db) return;
   try {
     const { device, browser } = getDeviceInfo();
     await addDoc(collection(db, "access_logs"), {
       visitorId: getOrCreateVisitorId(),
-      answer,
-      isCorrect,
-      attempts,
-      answeredAt: serverTimestamp(),
-      device,
-      browser,
+      answer, isCorrect, attempts, context,
+      answeredAt: serverTimestamp(), device, browser,
     });
   } catch (err) {
     console.warn("[Analytics] trackAccessAttempt failed:", err.message);
   }
 }
 
-// ─── Interaction tracking ────────────────────────────
 export async function trackInteraction(data) {
   if (!db) return;
   try {
     const { device, browser } = getDeviceInfo();
     await addDoc(collection(db, "interactions"), {
       visitorId: getOrCreateVisitorId(),
-      device,
-      browser,
+      device, browser,
       createdAt: serverTimestamp(),
       ...data,
     });
@@ -129,7 +106,23 @@ export async function trackInteraction(data) {
   }
 }
 
-// ─── Admin data fetching ─────────────────────────────
+export async function trackFinalAnswer({ answer }) {
+  if (!db) return;
+  try {
+    const { device, browser } = getDeviceInfo();
+    await addDoc(collection(db, "interactions"), {
+      visitorId: getOrCreateVisitorId(),
+      event: "oneLastQuestion",
+      answer,
+      answeredAt: serverTimestamp(),
+      createdAt: serverTimestamp(),
+      device, browser,
+    });
+  } catch (err) {
+    console.warn("[Analytics] trackFinalAnswer failed:", err.message);
+  }
+}
+
 export async function fetchAdminData() {
   if (!db) throw new Error("Firebase not initialized");
 
@@ -152,12 +145,18 @@ export async function fetchAdminData() {
   const videoPlayed = interactions.filter((i) => i.videoPlayed).length;
   const videoCompleted = interactions.filter((i) => i.videoCompleted).length;
 
+  const finalAnswers = interactions.filter((i) => i.event === "oneLastQuestion");
+  const answeredYes = finalAnswers.filter((i) => i.answer === "yes").length;
+  const answeredNo = finalAnswers.filter((i) => i.answer === "no").length;
+  const latestFinalAnswer = finalAnswers[0] ?? null;
+
   const durationsArr = visits.filter((v) => v.totalDuration).map((v) => v.totalDuration);
-  const avgDuration = durationsArr.length ? Math.round(durationsArr.reduce((a, b) => a + b, 0) / durationsArr.length) : 0;
+  const avgDuration = durationsArr.length
+    ? Math.round(durationsArr.reduce((a, b) => a + b, 0) / durationsArr.length)
+    : 0;
 
   const lastVisit = visits[0]?.sessionStart?.toDate?.()?.toLocaleString("id-ID") ?? "-";
 
-  // Wrong answers
   const wrongAnswers = accessLogs.filter((a) => !a.isCorrect);
   const answerCount = {};
   wrongAnswers.forEach((a) => {
@@ -168,7 +167,6 @@ export async function fetchAdminData() {
     .slice(0, 5)
     .map(([answer, count]) => ({ answer, count }));
 
-  // Visitor profiles
   const visitorMap = {};
   visits.forEach((v) => {
     if (!visitorMap[v.visitorId]) {
@@ -178,21 +176,13 @@ export async function fetchAdminData() {
   });
   const visitorList = Object.values(visitorMap).sort((a, b) => b.visits - a.visits);
 
-  // Recent activity (last 10)
   const recentActivity = interactions.slice(0, 10);
 
   return {
-    totalVisits,
-    uniqueVisitors,
-    returningVisitors,
-    wishClicks,
-    memoriesClicks,
-    videoPlayed,
-    videoCompleted,
-    avgDuration,
-    lastVisit,
-    topWrongAnswers,
-    visitorList,
-    recentActivity,
+    totalVisits, uniqueVisitors, returningVisitors,
+    wishClicks, memoriesClicks, videoPlayed, videoCompleted,
+    answeredYes, answeredNo, latestFinalAnswer,
+    avgDuration, lastVisit,
+    topWrongAnswers, visitorList, recentActivity,
   };
 }

@@ -157,7 +157,7 @@ export default function AccessQuestionPage({ onSuccess }) {
                   fontFamily: "var(--font-display)",
                   fontStyle: "italic",
                 }}>
-                  Coba inget lagi :)
+                  Namanyaa :)
                 </p>
               </div>
 
@@ -185,7 +185,7 @@ export default function AccessQuestionPage({ onSuccess }) {
               fontSize: "0.9rem",
               color: "var(--text-soft)",
             }}>
-              Ini hanya untukmu 🤍
+              Made For You 
             </p>
           </>
         )}

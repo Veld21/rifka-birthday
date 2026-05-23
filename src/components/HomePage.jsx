@@ -48,7 +48,11 @@ export default function HomePage({ onNavigate }) {
       clickedAt: new Date().toISOString(),
     });
 
-    onNavigate(page);
+    // Route through gates where needed
+    if (page === "memories") onNavigate("memories-gate");
+    else if (page === "things") onNavigate("things-gate");
+    else if (page === "one-last-question") onNavigate("ready");
+    else onNavigate(page);
   };
 
   return (
@@ -228,6 +232,28 @@ export default function HomePage({ onNavigate }) {
           >
             <span>📷</span>
             <span>Our Little Memories</span>
+          </button>
+
+          <button
+            className="btn btn-secondary"
+            onClick={() => handleNav("things")}
+            style={{ width: "100%", maxWidth: "300px" }}
+          >
+            <span>✉</span>
+            <span>About Eldwin</span>
+          </button>
+
+          <button
+            className="btn btn-secondary"
+            onClick={() => handleNav("one-last-question")}
+            style={{
+              width: "100%", maxWidth: "300px",
+              borderColor: "rgba(196,82,122,0.45)",
+              color: "var(--pink-deep)",
+            }}
+          >
+            <span>🌸</span>
+            <span>One Last Question</span>
           </button>
         </div>
 

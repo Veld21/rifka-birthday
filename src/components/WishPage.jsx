@@ -3,7 +3,7 @@ import FloatingHearts from "./FloatingHearts";
 import { CONFIG } from "../config";
 import { trackInteraction } from "../firebase";
 
-export default function WishPage({ onBack }) {
+export default function WishPage({ onBack, onContinue }) {
   const [visible, setVisible] = useState(false);
   const [scrollDepth, setScrollDepth] = useState(new Set());
   const startRef = useRef(Date.now());
@@ -185,9 +185,29 @@ export default function WishPage({ onBack }) {
             </p>
           </div>
 
-          {/* Back button */}
-          <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
-            <button className="btn btn-secondary" onClick={onBack} style={{ maxWidth: "220px", width: "100%" }}>
+          {/* Navigation buttons */}
+          <div style={{ textAlign: "center", marginTop: "3rem", display: "flex", flexDirection: "column", gap: "1rem", alignItems: "center" }}>
+            {onContinue && (
+              <>
+                <div style={{ marginBottom: "0.5rem" }}>
+                  <p style={{
+                    fontFamily: "var(--font-display)", fontStyle: "italic",
+                    fontSize: "0.9rem", color: "var(--text-soft)",
+                    marginBottom: "1.25rem",
+                  }}>
+                    masih ada yang perlu kamu lihat.
+                  </p>
+                  <button
+                    className="btn btn-primary"
+                    onClick={onContinue}
+                    style={{ maxWidth: "260px", width: "100%" }}
+                  >
+                    Lanjutkan →
+                  </button>
+                </div>
+              </>
+            )}
+            <button className="btn btn-ghost" onClick={onBack} style={{ fontSize: "0.85rem", minWidth: "auto" }}>
               ← Kembali
             </button>
           </div>

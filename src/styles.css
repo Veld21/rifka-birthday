@@ -311,10 +311,49 @@ body {
   color: var(--text-soft);
 }
 
+/* ─── Cinematic reveal ─── */
+@keyframes cinematicReveal {
+  0% { opacity: 0; filter: blur(8px); transform: translateY(18px); }
+  100% { opacity: 1; filter: blur(0); transform: translateY(0); }
+}
+
+@keyframes softGlow {
+  0%, 100% { box-shadow: 0 8px 24px rgba(196,82,122,0.30); }
+  50% { box-shadow: 0 12px 40px rgba(196,82,122,0.50); }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.04); opacity: 1; }
+}
+
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-cinematic { animation: cinematicReveal 1s ease both; }
+.animate-breathe { animation: breathe 3s ease-in-out infinite; }
+.animate-float { animation: gentleFloat 4s ease-in-out infinite; }
+
+/* ─── Things page item hover ─── */
+.things-item:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 28px rgba(180,100,130,0.14) !important;
+}
+
 /* ─── Responsive ─── */
 @media (max-width: 480px) {
   .btn {
     width: 100%;
     max-width: 320px;
+  }
+}
+
+/* ─── Safe area for iPhone notch ─── */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .page {
+    padding-top: calc(env(safe-area-inset-top) + 2rem);
+    padding-bottom: calc(env(safe-area-inset-bottom) + 2rem);
   }
 }

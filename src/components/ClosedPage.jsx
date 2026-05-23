@@ -40,18 +40,20 @@ export default function ClosedPage() {
             lineHeight: 1.8,
             margin: "1.5rem 0",
           }}>
-            tapi doanya tetap tinggal.
+            :)
           </p>
 
           <p style={{
-            fontSize: "0.9rem",
-            color: "var(--text-soft)",
-            lineHeight: 1.7,
+          fontSize: "0.9rem",
+          color: "var(--text-soft)",
+          lineHeight: 1.7,
           }}>
-            Some people arrive quietly, then somehow become part of your everyday thoughts without asking permission.<br />
-            And maybe that’s the cruel part of caring deeply. Sometimes the story ends even when the feeling doesn’t.<br />
-            Thank you for every small memory, every laugh, every moment that once made life feel lighter.
-            I truly hope life becomes gentle with you, even if someday it no longer includes me.
+          Some people arrive quietly, then slowly become the safest part of your day.<br />
+          I thought this story would end with goodbye.<br />
+          But somehow… you chose to stay.<br /><br />
+
+          Thank you for every little memory we created together.<br />
+          And thank you for giving my feelings a place to finally arrive.
           </p>
 
           <div className="divider" style={{ marginTop: "2rem" }}>
@@ -75,7 +77,9 @@ export default function ClosedPage() {
           fontSize: "0.95rem",
           color: "var(--text-soft)",
         }}>
-          Made with love, {CONFIG.senderName} 🤍
+          
+          Made with love, {CONFIG.senderName} 🤍<br/>
+          someone who built a whole universe just to say “I love you".
         </p>
 
       </div>

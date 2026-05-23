@@ -3,7 +3,7 @@ import FloatingHearts from "./FloatingHearts";
 import { CONFIG } from "../config";
 import { trackInteraction } from "../firebase";
 
-export default function MemoriesPage({ onBack }) {
+export default function MemoriesPage({ onBack, onContinue }) {
   const [visible, setVisible] = useState(false);
   const videoRef = useRef(null);
   const startRef = useRef(Date.now());
@@ -266,9 +266,27 @@ export default function MemoriesPage({ onBack }) {
             </p>
           </div>
 
-          {/* Back button */}
-          <div style={{ textAlign: "center" }}>
-            <button className="btn btn-secondary" onClick={onBack} style={{ maxWidth: "220px", width: "100%" }}>
+          {/* Navigation buttons */}
+          <div style={{ textAlign: "center", display: "flex", flexDirection: "column", gap: "1rem", alignItems: "center" }}>
+            {onContinue && (
+              <>
+                <p style={{
+                  fontFamily: "var(--font-display)", fontStyle: "italic",
+                  fontSize: "0.9rem", color: "var(--text-soft)",
+                  marginBottom: "0.5rem",
+                }}>
+                  ada satu hal lagi yang ingin aku ceritakan...
+                </p>
+                <button
+                  className="btn btn-primary"
+                  onClick={onContinue}
+                  style={{ maxWidth: "260px", width: "100%" }}
+                >
+                  Lanjutkan →
+                </button>
+              </>
+            )}
+            <button className="btn btn-ghost" onClick={onBack} style={{ fontSize: "0.85rem", minWidth: "auto" }}>
               ← Kembali
             </button>
           </div>
