@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { CONFIG } from "./config";
-import { trackVisit, trackSessionEnd } from "./firebase";
+import { trackVisit, trackSessionEnd, trackFinalAnswer } from "./firebase";
 import CountdownPage from "./components/CountdownPage";
 import AccessQuestionPage from "./components/AccessQuestionPage";
 import QuestionGatePage from "./components/QuestionGatePage";
@@ -211,18 +211,21 @@ export default function App() {
     return wrap(
       "one-last-question",
       <OneLastQuestionPage
-        onYes={() => {
-          localStorage.setItem("rifka_final_answer", "yes");
-          setAppState("closed");
-          setLastPage("closed");
-          window.scrollTo({ top: 0, behavior: "instant" });
-        }}
+       onYes={() => {
+       localStorage.setItem("rifka_final_answer", "yes");
+       trackFinalAnswer({ answer: "yes" });
+        setAppState("closed");
+       setLastPage("closed");
+       window.scrollTo({ top: 0, behavior: "instant" });
+      }}
+
         onNo={() => {
-          localStorage.setItem("rifka_final_answer", "no");
-          setAppState("locked");
-          setLastPage("locked");
-          window.scrollTo({ top: 0, behavior: "instant" });
-        }}
+        localStorage.setItem("rifka_final_answer", "no");
+        trackFinalAnswer({ answer: "no" });
+        setAppState("locked");
+       setLastPage("locked");
+       window.scrollTo({ top: 0, behavior: "instant" });
+      }}
       />
     );
   }
