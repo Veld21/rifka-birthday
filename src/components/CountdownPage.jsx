@@ -151,7 +151,7 @@ export default function CountdownPage() {
             color: "var(--text-soft)",
             letterSpacing: "0.05em",
           }}>
-            Opens on May 29, 2026 · 00:10 WIB
+            Opens on May 29, 2026 · 00:01 WIB
           </p>
         </div>
 
