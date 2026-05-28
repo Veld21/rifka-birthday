@@ -64,11 +64,18 @@ export default function ClosedPage() {
               lineHeight: 1.7,
             }}
           >
-            Maybe somewhere between the words,
-            the music, and the memories...
-            there was a feeling that once tried its best
-            to stay alive here.
+            Maybe somewhere between the words, the music, the late nights, and the memories…
+            there was a feeling that once tried its best to stay alive here.  
+            <br /><br />.
+            And maybe that’s enough.
             <br /><br />
+            Not every story is meant to last forever.
+            Some are only meant to leave something behind quietly.
+            <br /><br />
+            A small memory.<br />
+            A small feeling.<br />
+            A small universe that once existed for someone.<br />
+             <br /><br />
             But every story has a final page.
             And this one has finally reached its end.
           </p>

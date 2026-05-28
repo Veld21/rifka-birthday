@@ -11,21 +11,21 @@ export default function OneLastQuestionPage({ onYes, onNo }) {
     return () => timers.forEach(clearTimeout);
   }, []);
 
-const handleYes = () => {
-  if (answered) return;
-  setAnswered("yes");
-  trackFinalAnswer({ answer: "yes" });
-  localStorage.setItem("rifka_final_answer", "yes");
-  setTimeout(() => onYes(), 1800);
-};
+  const handleYes = () => {
+    if (answered) return;
+    setAnswered("yes");
+    trackFinalAnswer({ answer: "yes" });
+    localStorage.setItem("rifka_final_answer", "yes");
+    setTimeout(() => onYes(), 1800);
+  };
 
-const handleNo = () => {
-  if (answered) return;
-  setAnswered("no");
-  trackFinalAnswer({ answer: "no" });
-  localStorage.setItem("rifka_final_answer", "no");
-  setTimeout(() => onNo(), 2800);
-};
+  const handleNo = () => {
+    if (answered) return;
+    setAnswered("no");
+    trackFinalAnswer({ answer: "no" });
+    localStorage.setItem("rifka_final_answer", "no");
+    setTimeout(() => onNo(), 2800);
+  };
 
   const isAnswered = answered !== null;
 
@@ -48,36 +48,27 @@ const handleNo = () => {
         aria-hidden
         style={{
           position: "fixed",
-          top: "30%",
-          left: "50%",
+          top: "30%", left: "50%",
           transform: "translate(-50%, -50%)",
-          width: "700px",
-          height: "700px",
+          width: "700px", height: "700px",
           borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(196,82,122,0.07) 0%, transparent 65%)",
+          background: "radial-gradient(circle, rgba(196,82,122,0.07) 0%, transparent 65%)",
           pointerEvents: "none",
         }}
       />
 
       <div
         style={{
-          position: "relative",
-          zIndex: 1,
-          textAlign: "center",
-          maxWidth: "500px",
-          width: "100%",
+          position: "relative", zIndex: 1,
+          textAlign: "center", maxWidth: "500px", width: "100%",
         }}
       >
         {/* Label */}
         <p
           style={{
-            fontFamily: "var(--font-display)",
-            fontStyle: "italic",
-            fontSize: "0.8rem",
-            color: "var(--text-soft)",
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
+            fontFamily: "var(--font-display)", fontStyle: "italic",
+            fontSize: "0.8rem", color: "var(--text-soft)",
+            letterSpacing: "0.2em", textTransform: "uppercase",
             marginBottom: "2.5rem",
             opacity: phase >= 1 ? 1 : 0,
             transition: "opacity 1s ease",
@@ -89,11 +80,9 @@ const handleNo = () => {
         {/* Pre-lines */}
         <div
           style={{
-            fontFamily: "var(--font-display)",
-            fontStyle: "italic",
+            fontFamily: "var(--font-display)", fontStyle: "italic",
             fontSize: "clamp(0.95rem, 3.2vw, 1.1rem)",
-            color: "var(--text-mid)",
-            lineHeight: 1.9,
+            color: "var(--text-mid)", lineHeight: 1.9,
             marginBottom: "2.5rem",
             opacity: phase >= 2 ? 1 : 0,
             transform: phase >= 2 ? "translateY(0)" : "translateY(14px)",
@@ -102,21 +91,23 @@ const handleNo = () => {
         >
           <p style={{ marginBottom: "0.6rem" }}>After everything…</p>
           <p style={{ marginBottom: "0.6rem" }}>
-            After all the overthinking, the mistakes,
+            After all the overthinking, the distance,
             <br />
-            the distance, and everything that changed…
+            and everything that slowly changed
           </p>
           <p style={{ marginBottom: "0.6rem" }}>
-            There's still one thing I've always wanted
+            I guess there's still one thing
             <br />
-            to ask you properly.
+            I want to do properly.
           </p>
           <p style={{ marginBottom: "0.6rem", color: "var(--text-soft)" }}>
-            Maybe this sounds late.
+            I told myself that someday,
             <br />
-            Maybe this sounds stupid.
+            if I ever got the chance,
+            <br />
+            I would ask you honestly.
           </p>
-          <p>But my feelings for you were never fake.</p>
+          <p>And today… I'm keeping that promise.</p>
         </div>
 
         {/* THE question */}
@@ -130,20 +121,16 @@ const handleNo = () => {
         >
           <h1
             style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 300,
+              fontFamily: "var(--font-display)", fontWeight: 300,
               fontSize: "clamp(1.5rem, 5.5vw, 2.2rem)",
-              color: "var(--text-dark)",
-              lineHeight: 1.45,
+              color: "var(--text-dark)", lineHeight: 1.55,
               letterSpacing: "0.01em",
             }}
           >
-            If this is my last chance
-            <br />
-            to ask properly.
+            So, Rifka Wang
             <br />
             <em style={{ color: "var(--pink-deep)", fontStyle: "italic" }}>
-              will you be my girlfriend?
+              will you be my girlfriend? 
             </em>
           </h1>
         </div>
@@ -151,26 +138,17 @@ const handleNo = () => {
         {/* Yes response */}
         {answered === "yes" && (
           <div style={{ animation: "fadeInUp 0.7s ease both" }}>
-            <div
-              style={{
-                background: "rgba(255,255,255,0.6)",
-                backdropFilter: "blur(20px)",
-                WebkitBackdropFilter: "blur(20px)",
-                border: "1px solid rgba(244,167,185,0.3)",
-                borderRadius: "24px",
-                padding: "2.5rem 2rem",
-              }}
-            >
+            <div style={{
+              background: "rgba(255,255,255,0.6)",
+              backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
+              border: "1px solid rgba(244,167,185,0.3)",
+              borderRadius: "24px", padding: "2.5rem 2rem",
+            }}>
               <div style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>🌸</div>
-              <p
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontStyle: "italic",
-                  fontSize: "1.3rem",
-                  color: "var(--pink-deep)",
-                  lineHeight: 1.6,
-                }}
-              >
+              <p style={{
+                fontFamily: "var(--font-display)", fontStyle: "italic",
+                fontSize: "1.3rem", color: "var(--pink-deep)", lineHeight: 1.6,
+              }}>
                 Really ?
                 <br />
                 <span style={{ fontSize: "1rem", color: "var(--text-mid)" }}>
@@ -184,31 +162,20 @@ const handleNo = () => {
         {/* No response */}
         {answered === "no" && (
           <div style={{ animation: "fadeInUp 0.7s ease both" }}>
-            <div
-              style={{
-                background: "rgba(255,255,255,0.5)",
-                backdropFilter: "blur(20px)",
-                WebkitBackdropFilter: "blur(20px)",
-                border: "1px solid rgba(244,167,185,0.2)",
-                borderRadius: "24px",
-                padding: "2.5rem 2rem",
-              }}
-            >
-              <p
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontStyle: "italic",
-                  fontSize: "1.1rem",
-                  color: "var(--text-mid)",
-                  lineHeight: 1.75,
-                }}
-              >
+            <div style={{
+              background: "rgba(255,255,255,0.5)",
+              backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
+              border: "1px solid rgba(244,167,185,0.2)",
+              borderRadius: "24px", padding: "2.5rem 2rem",
+            }}>
+              <p style={{
+                fontFamily: "var(--font-display)", fontStyle: "italic",
+                fontSize: "1.1rem", color: "var(--text-mid)", lineHeight: 1.75,
+              }}>
                 <br />
-                <span
-                  style={{ fontSize: "0.95rem", color: "var(--text-soft)" }}
-                >
-                  Even if this isn’t the ending I wished for…
-                  I’m still grateful I got to know you
+                <span style={{ fontSize: "0.95rem", color: "var(--text-soft)" }}>
+                  Even if this isn't the ending I wished for…
+                  I'm still grateful I got to know you.
                   Thank you for reading all the way here.
                 </span>
               </p>
@@ -220,10 +187,8 @@ const handleNo = () => {
         {!isAnswered && (
           <div
             style={{
-              display: "flex",
-              gap: "1rem",
-              justifyContent: "center",
-              flexWrap: "wrap",
+              display: "flex", gap: "1rem",
+              justifyContent: "center", flexWrap: "wrap",
               opacity: phase >= 4 ? 1 : 0,
               transform: phase >= 4 ? "translateY(0)" : "translateY(16px)",
               transition: "opacity 1s ease, transform 1s ease",
@@ -234,20 +199,17 @@ const handleNo = () => {
               onClick={handleYes}
               style={{ minWidth: "150px", flex: "1 1 140px", maxWidth: "200px" }}
             >
-              Yes 
+              Yes
             </button>
             <button
               className="btn btn-secondary"
               onClick={handleNo}
               style={{
-                minWidth: "150px",
-                flex: "1 1 140px",
-                maxWidth: "200px",
-                color: "var(--text-mid)",
-                borderColor: "rgba(180,120,140,0.4)",
+                minWidth: "150px", flex: "1 1 140px", maxWidth: "200px",
+                color: "var(--text-mid)", borderColor: "rgba(180,120,140,0.4)",
               }}
             >
-              No 
+              No
             </button>
           </div>
         )}

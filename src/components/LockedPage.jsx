@@ -84,8 +84,10 @@ export default function LockedPage() {
             transition: "opacity 1.6s ease, transform 1.6s ease",
           }}
         >
-          I had a feeling you might choose this.
+          Maybe deep down,
           <br />
+          I already knew this might be your answer.
+          <br/>
           And maybe that’s okay.
           <br />
           <br />
@@ -94,17 +96,15 @@ export default function LockedPage() {
           but what I felt was real.
           <br />
           <br />
-          Thank you for being part of this little journey,
+          Thank you for being part of this little journey.
           <br />
-          and thank you for once being
-          <br />
-          such an important part of my life.
+          And thank you for once being such an important part of my life.
           <br/>
           Maybe I’m not chasing your love anymore.
           <br/>
-          But if being friends is all we can be,
+          But if being friends is the only way I can still keep you in my life,
           <br/>
-          then I’m still grateful you’re here.
+          then I’m still grateful for that.
         </p>
 
         <div
