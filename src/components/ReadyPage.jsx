@@ -103,8 +103,8 @@ export default function ReadyPage({ onReady, onBack }) {
           transform: phase >= 3 ? "translateY(0)" : "translateY(12px)",
           transition: "opacity 0.9s ease, transform 0.9s ease",
         }}>
-          Ada satu hal yang perlu aku tanyakan.<br />
-          Hanya sekali. Dan ini serius.
+          ADA SATU HAL YANG PERLU AKU TANYA.<br />
+          HANYA SEKALI. DAN INI SERIUS.
         </p>
 
         {/* Buttons */}

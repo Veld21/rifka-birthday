@@ -13,13 +13,13 @@ export default function AccessQuestionPage({ onSuccess }) {
   const handleSubmit = async () => {
     if (loading || granted) return;
     const cleaned = answer.trim().toLowerCase();
-    const correct = CONFIG.correctAnswer.trim().toLowerCase();
+    const correct = CONFIG.correctAnswer.split("|").map(a => a.trim().toLowerCase());
 
     const newAttempts = attempts + 1;
     setAttempts(newAttempts);
     setLoading(true);
 
-    const isCorrect = cleaned === correct;
+    const isCorrect = correct.includes(cleaned);
 
     await trackAccessAttempt({ answer: answer.trim(), isCorrect, attempts: newAttempts });
 

@@ -2,64 +2,101 @@ import { useState, useEffect } from "react";
 import FloatingHearts from "./FloatingHearts";
 
 const THINGS = [
-  {
-    text: "I’ve always been the kind of person who feels things too deeply, even when I try my best not to show it.",
-  },
-  {
-    text: "I notice small changes in people’s voices, remember tiny details nobody else pays attention to, and somehow turn ordinary moments into memories I carry for a very long time.",
-  },
-  {
-    text: "I overthink late at night, replay conversations in my head, and often wonder if I could have loved people better, softer, or differently.",
-  },
-  {
-    text: "Sometimes I look fine on the outside while quietly fighting battles inside my own mind. Sometimes I joke too much just to stop people from asking if I’m actually okay.",
-  },
-  {
-    text: "I love deeply, stay longer than I probably should, and give people chances even after they hurt me. Not because I’m weak, but because my heart has never learned how to hate someone I once cared about sincerely.",
-  },
-  {
-    text: "I believe that love is hidden in small things: remembering favorite songs, waiting until someone gets home safely, random late-night talks, and tiny details that most people eventually forget.",
-  },
-  {
-    text: "Maybe that’s why I created this page. Not to force an ending, not to trap anyone inside memories, but simply to leave behind proof that, at one point in my life, my feelings were real.",
-  },
-  {
-    text: "I tend to care too much, even when I pretend I don’t.",
-  },
-  {
-    text: "Sometimes I stay silent because I’m afraid my feelings might become too much for someone else.",
-  },
-  {
-    text: "I get attached to small moments more easily than I should.",
-  },
-  {
-    text: "Sometimes I miss people quietly, without telling anyone.",
-  },
-  {
-    text: "There are conversations I still remember word for word.",
-  },
-  {
-    text: "I still revisit certain memories like they belong to another version of my life.",
-  },
-  {
-    text: "Some people probably never realize how much they once meant to me.",
-  },
-  {
-    text: "Maybe that’s why goodbyes always stay with me a little longer.",
-  },
-  {
-    text: "I was never really good at letting people go once they became important to me.",
-  },
-  {
-    text: "Even after everything, I still choose softness over bitterness.",
-  },
-  {
-    text: "And despite everything, despite all the overthinking, the disappointments, the silences, and the goodbyes...",
-  },
-  {
-    text: "my heart still stays soft for the people I truly love.",
-  },
+{
+text: "Sebenernya aku juga bingung kenapa aku bisa sesayang ini sama kamu. Padahal awalnya biasa aja. Cuma ngobrol, bercanda, jalanin hari kayak biasa.",
+},
+{
+text: "Tapi entah kenapa, pelan-pelan kamu jadi orang yang paling sering ada di kepala aku. Aku jadi nunggu chat dari kamu. Aku jadi seneng cuma karena kamu nyariin aku duluan.",
+},
+{
+text: "Hal-hal kecil yang mungkin buat kamu biasa aja… buat aku malah jadi sesuatu. Dan makin lama aku sadar kalau aku udah jatuh terlalu dalam.",
+},
+{
+text: "Lucunya, aku tuh sadar kok kalau aku terlalu berharap. Aku sadar aku terlalu naruh hati. Tapi perasaan itu susah dimatiin kalau tiap harinya yang dipikirin orang yang sama terus.",
+},
+{
+text: "Kadang aku juga cape sama diri sendiri. Cape overthinking. Cape mikirin kemungkinan yang bahkan belum tentu kejadian.",
+},
+{
+text: "Tapi di saat yang sama… aku juga ga bisa bohong kalau kamu bikin aku bahagia. Aku inget banyak hal tentang kamu. Cara kamu ngomong, cara kamu ketawa, cara kamu cerita random tentang hari kamu.",
+},
+{
+text: "Bahkan beberapa momen kecil sama kamu masih muter terus di kepala aku sampai sekarang. Dan jujur aja, aku takut kehilangan semua itu. Aku takut suatu hari nanti kita jadi asing.",
+},
+{
+text: "Aku juga ga tau kenapa bisa sampai sejauh ini. Awalnya aku pikir kamu cuma bakal jadi orang yang lewat sebentar di hidup aku. Tapi ternyata engga.",
+},
+{
+text: "Pelan-pelan kamu jadi seseorang yang selalu aku tunggu tiap hari. Aku jadi kebiasa nyari kamu. Kebiasa pengen cerita ke kamu. Dan tanpa sadar… kebiasa naro hati ke kamu juga.",
+},
+{
+text: "Kadang aku mikir lucu juga ya. Dari sekian banyak orang di dunia, kenapa harus kamu yang bikin aku sesayang ini.",
+},
+{
+text: "Padahal kamu mungkin ga pernah ngelakuin hal besar. Cuma cara kamu hadir aja udah cukup bikin aku nyaman. Dan makin lama aku kenal kamu, makin susah buat nganggep semuanya biasa aja.",
+},
+{
+text: "Aku mulai peduli sama hal-hal kecil tentang kamu. Mulai khawatir kalau kamu lagi capek. Mulai seneng cuma karena kamu keliatan happy hari itu.",
+},
+{
+text: "Dan jujur aja… aku suka semua itu. Aku suka ngobrol sama kamu. Aku suka denger cerita kamu. Aku suka cara kamu bikin hari aku terasa lebih ringan tanpa kamu sadar.",
+},
+{
+text: "Oiya… sebenernya aku juga sempet pesen flight buat ketemu kamu. Aku pengen bikin surprise kecil buat kamu.",
+},
+{
+text: "Dan jujur aja… waktu itu aku excited banget.",
+},
+{
+text: "Aku ngebayangin bisa ketemu kamu langsung, ngobrol, jalan bentar, atau sekadar nemenin kamu aja rasanya udah cukup.",
+},
+{
+text: "Sebenernya waktu itu aku udah beneran siap buat dateng.",
+},
+{
+text: "Tapi sekarang rasanya udah beda ya.",
+},
+{
+text: "Kita udah ga sedeket dulu lagi.",
+},
+{
+text: "Dan makin aku pikirin, makin aku ngerasa kalau dateng sekarang malah jadi ga enak.",
+},
+{
+text: "Aku takut semuanya jadi terasa maksa.",
+},
+{
+text: "Takut aku datang dengan perasaan yang masih sama, sementara keadaan kita udah berubah.",
+},
+{
+text: "Jadi akhirnya aku milih buat ga dateng, dan cancel flightnya",
+},
+{
+text: "Bukan karena aku ga jadi pengen ketemu kamu.",
+},
+{
+text: "Percaya deh… aku masih pengen banget.",
+},
+{
+text: "Aku cuma ga mau bikin kamu ngerasa ga nyaman karena kehadiran aku.",
+},
+{
+text: "Dan aku juga ga mau jadi alasan seseorang merasa terpaksa.",
+},
+{
+text: "Jadi aku simpen semuanya sendiri aja.",
+},
+{
+text: "Makanya aku bikin semua ini. Bukan buat maksa kamu suka balik sama aku. Bukan juga buat bikin kamu kasihan sama aku. Aku cuma pengen sekali aja jujur tentang apa yang selama ini aku rasain.",
+},
+{
+text: "Kalau akhirnya nanti bukan aku orang yang kamu pilih, yaudah. Aku ga mau maksa perasaan seseorang. Aku cuma mau kamu tau kalau perasaan aku ke kamu selama ini beneran nyata.",
+},
+{
+text: "Pernah ada seseorang yang sayang banget sama kamu. Yang doain kamu diam-diam. Yang khawatir sama kamu lebih dari yang seharusnya. Yang seneng banget cuma karena kamu ada. Dan orang itu… aku.",
+},
 ];
+
 
 export default function ThingsNeverSaidPage({ onContinue, onBack }) {
   const [visible, setVisible] = useState(false);

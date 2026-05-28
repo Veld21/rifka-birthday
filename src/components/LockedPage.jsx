@@ -23,7 +23,6 @@ export default function LockedPage() {
         overflow: "hidden",
       }}
     >
-      {/* Very subtle vignette */}
       <div
         aria-hidden
         style={{
@@ -44,7 +43,6 @@ export default function LockedPage() {
           width: "100%",
         }}
       >
-        {/* Small ornament */}
         <div
           style={{
             fontSize: "1.2rem",
@@ -56,7 +54,6 @@ export default function LockedPage() {
           ✦
         </div>
 
-        {/* Line 1 */}
         <p
           style={{
             fontFamily: "var(--font-display)",
@@ -70,10 +67,9 @@ export default function LockedPage() {
             transition: "opacity 1.6s ease, transform 1.6s ease",
           }}
         >
-          Thank you for reading all the way here.
+          Thank you for reading this far.
         </p>
 
-        {/* Line 2 */}
         <p
           style={{
             fontFamily: "var(--font-display)",
@@ -88,20 +84,29 @@ export default function LockedPage() {
             transition: "opacity 1.6s ease, transform 1.6s ease",
           }}
         >
-          I know you’ll choose this.<br />
-          And maybe… that’s okay.<br />
-          My promises ended here,<br />
-          but my feelings probably never will.<br />
-          Makasih karena udah nemenin perjalanan kecil ini sampai akhir<br />
+          I had a feeling you might choose this.
           <br />
-          Dan makasih… karena pernah jadi bagian penting dari hidup aku
-          <br/><br/>
-
+          And maybe that’s okay.
           <br />
-          
+          <br />
+          My promise ends here,
+          <br />
+          but what I felt was real.
+          <br />
+          <br />
+          Thank you for being part of this little journey,
+          <br />
+          and thank you for once being
+          <br />
+          such an important part of my life.
+          <br/>
+          Maybe I’m not chasing your love anymore.
+          <br/>
+          But if being friends is all we can be,
+          <br/>
+          then I’m still grateful you’re here.
         </p>
 
-        {/* Final mark */}
         <div
           style={{
             opacity: phase >= 3 ? 1 : 0,
@@ -119,6 +124,7 @@ export default function LockedPage() {
               background: "rgba(244,167,185,0.45)",
             }}
           />
+
           <p
             style={{
               fontFamily: "var(--font-display)",
@@ -127,10 +133,14 @@ export default function LockedPage() {
               color: "var(--text-soft)",
               opacity: 0.7,
               letterSpacing: "0.06em",
+              lineHeight: 1.7,
             }}
           >
-            Someone who built a whole universe just to say “I love you".<br/>
-            From someone who once hoped. 🤍
+            From someone who built a small universe
+            <br />
+            just to say “I love you.”
+            <br />
+            Someone who once hoped. 🤍
           </p>
         </div>
       </div>

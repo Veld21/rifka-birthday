@@ -14,6 +14,7 @@ import EndingPage from "./components/EndingPage";
 import GoodbyePage from "./components/GoodbyePage";
 import LockedPage from "./components/LockedPage";
 import ClosedPage from "./components/ClosedPage";
+import YesPage from "./components/YesPage";
 import AdminPage from "./components/AdminPage";
 import "./styles.css";
 
@@ -33,11 +34,6 @@ function getRoute() {
 
 function getLockedAnswer() {
   return localStorage.getItem("rifka_final_answer");
-}
-
-function isLocked() {
-  const ans = getLockedAnswer();
-  return ans === "yes" || ans === "no";
 }
 
 function PageTransition({ children, pageKey }) {
@@ -69,10 +65,8 @@ export default function App() {
 
   const [appState, setAppState] = useState(() => {
     const answer = getLockedAnswer();
-
-    if (answer === "yes") return "closed";
+    if (answer === "yes") return "yes-ending";
     if (answer === "no") return "locked";
-
     return "question";
   });
 
@@ -84,20 +78,14 @@ export default function App() {
 
   useEffect(() => {
     const handler = () => trackSessionEnd(lastPage);
-
     window.addEventListener("beforeunload", handler);
-
-    return () => {
-      window.removeEventListener("beforeunload", handler);
-    };
+    return () => window.removeEventListener("beforeunload", handler);
   }, [lastPage]);
 
   const navigate = useCallback((page) => {
     const answer = getLockedAnswer();
-
-    if (answer === "yes" && page !== "closed") return;
+    if (answer === "yes" && page !== "yes-ending") return;
     if (answer === "no" && page !== "locked") return;
-
     setAppState(page);
     setLastPage(page);
     window.scrollTo({ top: 0, behavior: "instant" });
@@ -111,9 +99,9 @@ export default function App() {
     <PageTransition pageKey={key}>{node}</PageTransition>
   );
 
-  // ── CLOSED AFTER YES ────────────────────────────────
-  if (appState === "closed") {
-    return wrap("closed", <ClosedPage />);
+  // ── YES ENDING ──────────────────────────────────────
+  if (appState === "yes-ending") {
+    return wrap("yes-ending", <YesPage />);
   }
 
   // ── LOCKED AFTER NO ─────────────────────────────────
@@ -211,21 +199,20 @@ export default function App() {
     return wrap(
       "one-last-question",
       <OneLastQuestionPage
-       onYes={() => {
-       localStorage.setItem("rifka_final_answer", "yes");
-       trackFinalAnswer({ answer: "yes" });
-        setAppState("closed");
-       setLastPage("closed");
-       window.scrollTo({ top: 0, behavior: "instant" });
-      }}
-
+        onYes={() => {
+          localStorage.setItem("rifka_final_answer", "yes");
+          trackFinalAnswer({ answer: "yes" });
+          setAppState("yes-ending");
+          setLastPage("yes-ending");
+          window.scrollTo({ top: 0, behavior: "instant" });
+        }}
         onNo={() => {
-        localStorage.setItem("rifka_final_answer", "no");
-        trackFinalAnswer({ answer: "no" });
-        setAppState("locked");
-       setLastPage("locked");
-       window.scrollTo({ top: 0, behavior: "instant" });
-      }}
+          localStorage.setItem("rifka_final_answer", "no");
+          trackFinalAnswer({ answer: "no" });
+          setAppState("locked");
+          setLastPage("locked");
+          window.scrollTo({ top: 0, behavior: "instant" });
+        }}
       />
     );
   }

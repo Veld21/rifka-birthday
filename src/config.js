@@ -8,12 +8,11 @@ export const CONFIG = {
   senderName: "Eldwin Wijaya",
 
   // Jawaban pertanyaan akses (tidak case sensitive)
-  correctAnswer: "Eldwin Wijaya",
-  correctAnswer: "eldwin",
+  correctAnswer: "eldwin|eldwin wijaya",
 
   // Tanggal buka dan tutup (WIB / UTC+7)
-  openDate: "2026-05-29T00:00:00+07:00",
-  closeDate: "2026-05-30T00:00:00+07:00",
+  openDate: "2026-05-28T00:00:00+07:00",
+  closeDate: "2026-05-29T00:00:00+07:00",
 
   // Password halaman admin
   adminPassword: "rifkawang2026",
