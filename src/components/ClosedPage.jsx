@@ -37,7 +37,8 @@ export default function ClosedPage() {
               lineHeight: 1.3,
             }}
           >
-            This little place has closed
+            This little place has closed<br/>
+And I think I finally know the answer.
           </h1>
 
           <div className="divider">
