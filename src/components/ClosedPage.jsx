@@ -37,8 +37,8 @@ export default function ClosedPage() {
               lineHeight: 1.3,
             }}
           >
-            This little place has closed<br/>
-And I think I finally know the answer.
+            This little place has closed.<br />
+            And I think I finally understand.
           </h1>
 
           <div className="divider">
@@ -65,18 +65,10 @@ And I think I finally know the answer.
               lineHeight: 1.7,
             }}
           >
-            Maybe somewhere between the words, the music, the late nights, and the memories…
-            there was a feeling that once tried its best to stay alive here.  
-            <br /><br />.
-            And maybe that’s enough.
+            Some feelings were never meant to stay forever.
             <br /><br />
-            Not every story is meant to last forever.
-            Some are only meant to leave something behind quietly.
+            Only to be remembered quietly.
             <br /><br />
-            A small memory.<br />
-            A small feeling.<br />
-            A small universe that once existed for someone.<br />
-             <br /><br />
             But every story has a final page.
             And this one has finally reached its end.
           </p>
