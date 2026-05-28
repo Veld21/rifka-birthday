@@ -11,7 +11,7 @@ export const CONFIG = {
   correctAnswer: "eldwin|eldwin wijaya",
 
   // Tanggal buka dan tutup (WIB / UTC+7)
-  openDate: "2026-05-29T00:10:00+07:00",
+  openDate: "2026-05-29T00:01:00+07:00",
   closeDate: "2026-05-30T00:00:00+07:00",
 
   // Password halaman admin
